@@ -13,7 +13,8 @@ def read_vid_and_save_in_folder(vid_path,save_parent_folder = '/nfs/hpc/share/ka
     vid_ca = cv2.VideoCapture(vid_path)
     extention = get_name_extention(vid_path)
     save_folder =save_parent_folder + '/' + extention
-    os.mkdir(save_folder)
+    if not os.path.exists(save_folder):
+        os.mkdir(save_folder)
     count = 0
     time_skips = 3000             # fps is 29.9 .i.e almost 30
     while vid_ca.isOpened():
@@ -28,7 +29,7 @@ def read_vid_and_save_in_folder(vid_path,save_parent_folder = '/nfs/hpc/share/ka
             if count%60==0:
                 print("frames saved so far: ",count )
 
-            # if count ==10: break
+            if count ==10: break
 
         else : break
 
@@ -44,7 +45,8 @@ def get_save_folder(vid_folder, save_base_folder_path):
 def main():
     base_vid_folder_path = 'vid'   # folder containg folders that have vidoes in them
     save_path_base_folder = 'test_folder'  # folder to save the frames according to vid folder hirarchy
-    os.mkdir(save_path_base_folder)
+    if not os.path.exists(save_path_base_folder):
+        os.mkdir(save_path_base_folder)
     #get list of paths for each folder in video base folder
     vid_folders = [os.path.join(base_vid_folder_path,paths) for paths in os.listdir(base_vid_folder_path)]
 
@@ -57,7 +59,8 @@ def main():
         # get the paths tot the vidoes in that folder
         vid_paths = get_vid_paths(vid_folder)
         save_folder_path = get_save_folder(vid_folder,save_path_base_folder)
-        os.mkdir(save_folder_path)
+        if not os.path.exists(save_folder_path):
+            os.mkdir(save_folder_path)
         for vid_path in vid_paths:
             read_vid_and_save_in_folder(vid_path,save_folder_path)
     return
