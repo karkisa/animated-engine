@@ -24,7 +24,11 @@ Like this :
 base_folder = ‘path_to_animated_engine_folder’
 ```
 
-* Download all the folders of the test videos inside vid folder.
+* Download all the folders of the test videos inside vid folder. 
+* Remove a hidden folder .DS_store if it exists. You can use the below command
+```
+rm vid/.DS_store
+```
 * Download the weight file of the model best.2 inside the animated folder using the command below.
 ```
 wget -o best.pt  https://oregonstate.box.com/shared/static/4bl2pr0xuygbai8gu97hajjs0ihprc7w.pt
