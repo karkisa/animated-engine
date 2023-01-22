@@ -22,7 +22,8 @@ def write_test_sh_file(main_folders,test_sh_path,results_main_folder,weights_pat
 
 def main():
     test_sh_path = 'test.sh'
-    main_folder = '/Users/sagar/Desktop/AI_cap/sturdy-eureka/data/animated-engine/test_folder'
+    base_folder = '/Users/sagar/Desktop/AI_cap/sturdy-eureka/data/animated-engine' # change accordingly
+    main_folder = base_folder + '/test_folder' # change accordingly
     weights_path = 'weights_whale/best.pt'       # change accordingly
     conf = 0.8
     main_folders = [os.path.join(main_folder,p) for p in os.listdir(main_folder)]
